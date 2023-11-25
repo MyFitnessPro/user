@@ -53,9 +53,9 @@ func main() {
 	})
 
 	// Routes
-	r.GET("/user/get", func(c *gin.Context) { handleGetUserRequest(c, firebaseClient) })
-	r.DELETE("/user/delete", func(c *gin.Context) { handleDeleteUserRequest(c, firebaseClient) })
-	r.POST("/user/upsert", func(c *gin.Context) { handleUpsertUserRequest(c, firebaseClient) })
+	r.GET("/user/get", func(c *gin.Context) { HandleGetUserRequest(c, firebaseClient) })
+	r.DELETE("/user/delete", func(c *gin.Context) { HandleDeleteUserRequest(c, firebaseClient) })
+	r.POST("/user/upsert", func(c *gin.Context) { HandleUpsertUserRequest(c, firebaseClient) })
 
 	// Swagger docs
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))

@@ -21,7 +21,7 @@ import (
 // @Failure 404 {string} string "User not found"
 // @Failure 500 {string} string "Failed to operate on user"
 // @Router /get [get]
-func handleGetUserRequest(c *gin.Context, client *goFirebase.FirebaseClient) {
+func HandleGetUserRequest(c *gin.Context, client *goFirebase.FirebaseClient) {
 
 	uid, role, _, err := utils.ProcessRequest(c, client)
 
@@ -49,7 +49,7 @@ func handleGetUserRequest(c *gin.Context, client *goFirebase.FirebaseClient) {
 // @Failure 400 {string} string "Invalid request parameters"
 // @Failure 500 {string} string "Failed to operate on user"
 // @Router /delete [delete]
-func handleDeleteUserRequest(c *gin.Context, client *goFirebase.FirebaseClient) {
+func HandleDeleteUserRequest(c *gin.Context, client *goFirebase.FirebaseClient) {
 	uid, role, _, err := utils.ProcessRequest(c, client)
 	if err != nil {
 		return
@@ -76,7 +76,7 @@ func handleDeleteUserRequest(c *gin.Context, client *goFirebase.FirebaseClient) 
 // @Failure 400 {string} string "Invalid request parameters"
 // @Failure 500 {string} string "Failed to operate on user"
 // @Router /upsert [post]
-func handleUpsertUserRequest(c *gin.Context, client *goFirebase.FirebaseClient) {
+func HandleUpsertUserRequest(c *gin.Context, client *goFirebase.FirebaseClient) {
 	uid, role, userData, err := utils.ProcessRequest(c, client)
 	if err != nil {
 		return
