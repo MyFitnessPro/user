@@ -1,0 +1,123 @@
+basePath: /user/
+host: localhost:50001
+info:
+  contact: {}
+  description: Api to manage user CRUD operations
+  title: User Service API
+  version: "1.0"
+paths:
+  /delete:
+    delete:
+      consumes:
+      - application/json
+      description: Delete user by ID and role
+      parameters:
+      - description: User ID
+        in: query
+        name: uid
+        required: true
+        type: string
+      - description: User Role
+        in: query
+        name: role
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: User deleted successfully
+          schema:
+            type: string
+        "400":
+          description: Invalid request parameters
+          schema:
+            type: string
+        "500":
+          description: Failed to operate on user
+          schema:
+            type: string
+      summary: Delete user
+      tags:
+      - User
+  /get:
+    get:
+      consumes:
+      - application/json
+      description: Get user by ID and role
+      parameters:
+      - description: User ID
+        in: query
+        name: uid
+        required: true
+        type: string
+      - description: User Role
+        in: query
+        name: role
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Invalid request parameters
+          schema:
+            type: string
+        "404":
+          description: User not found
+          schema:
+            type: string
+        "500":
+          description: Failed to operate on user
+          schema:
+            type: string
+      summary: Get user
+      tags:
+      - User
+  /upsert:
+    post:
+      consumes:
+      - application/json
+      description: Upsert user by ID and role
+      parameters:
+      - description: User ID
+        in: query
+        name: uid
+        required: true
+        type: string
+      - description: User Role
+        in: query
+        name: role
+        required: true
+        type: string
+      - description: User data
+        in: body
+        name: userData
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Invalid request parameters
+          schema:
+            type: string
+        "500":
+          description: Failed to operate on user
+          schema:
+            type: string
+      summary: Upsert user
+      tags:
+      - User
+swagger: "2.0"
