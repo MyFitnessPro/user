@@ -34,4 +34,4 @@ Start the application by executing:
 ./user
 ```
 <h1>Verify</h1>
-Once the application is started, it should be accessible via a browser or any HTTP client at the address <b>http://localhost:50001</b>.
+Once the application is started, it should be accessible via a browser or any HTTP client at the address <a href="http://localhost:50001/swagger/index.html#">http://localhost:50001/swagger/index.html#</a>.
