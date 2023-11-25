@@ -1,4 +1,4 @@
-package user
+package main
 
 import (
 	"net/http"
@@ -22,12 +22,8 @@ import (
 // @Failure 500 {string} string "Failed to operate on user"
 // @Router /get [get]
 func HandleGetUserRequest(c *gin.Context, client *goFirebase.FirebaseClient) {
-
-	uid, role, _, err := utils.ProcessRequest(c, client)
-
-	if err != nil {
-		return
-	}
+	uid := c.GetString("uid")
+	role := c.GetString("role")
 
 	userData, err := client.GetDocument(role, uid)
 	if utils.HandleHTTPError(c, err, http.StatusInternalServerError, "Failed to operate on user") {
@@ -50,12 +46,10 @@ func HandleGetUserRequest(c *gin.Context, client *goFirebase.FirebaseClient) {
 // @Failure 500 {string} string "Failed to operate on user"
 // @Router /delete [delete]
 func HandleDeleteUserRequest(c *gin.Context, client *goFirebase.FirebaseClient) {
-	uid, role, _, err := utils.ProcessRequest(c, client)
-	if err != nil {
-		return
-	}
+	uid := c.GetString("uid")
+	role := c.GetString("role")
 
-	err = client.DeleteDocument(role, uid)
+	err := client.DeleteDocument(role, uid)
 	if utils.HandleHTTPError(c, err, http.StatusInternalServerError, "Failed to operate on user") {
 		return
 	}
@@ -74,15 +68,26 @@ func HandleDeleteUserRequest(c *gin.Context, client *goFirebase.FirebaseClient) 
 // @Param userData body interface{} true "User data"
 // @Success 200 {object} map[string]interface{}
 // @Failure 400 {string} string "Invalid request parameters"
+// @Failure 400 {string} string "Body not found in context"
+// @Failure 500 {string} string "Body is of an incorrect type"
 // @Failure 500 {string} string "Failed to operate on user"
 // @Router /upsert [post]
 func HandleUpsertUserRequest(c *gin.Context, client *goFirebase.FirebaseClient) {
-	uid, role, userData, err := utils.ProcessRequest(c, client)
-	if err != nil {
+	uid := c.GetString("uid")
+	role := c.GetString("role")
+
+	userDataInterface, exists := c.Get("userData")
+	if !exists {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Body not found in context"})
+		return
+	}
+	userData, ok := userDataInterface.(map[string]interface{})
+	if !ok {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Body is of an incorrect type"})
 		return
 	}
 
-	err = client.UpsertDocument(role, uid, userData)
+	err := client.UpsertDocument(role, uid, userData)
 	if utils.HandleHTTPError(c, err, http.StatusInternalServerError, "Failed to create user in Firestore") {
 		return
 	}

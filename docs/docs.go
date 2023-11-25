@@ -171,7 +171,7 @@ const docTemplate = `{
                         }
                     },
                     "400": {
-                        "description": "Invalid request parameters",
+                        "description": "Body not found in context",
                         "schema": {
                             "type": "string"
                         }

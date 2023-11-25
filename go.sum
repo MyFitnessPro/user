@@ -20,6 +20,8 @@ github.com/KyleBanks/depth v1.2.1 h1:5h8fQADFrWtarTdtDudMmGsC7GPbOAu6RVB3ffsVFHc
 github.com/KyleBanks/depth v1.2.1/go.mod h1:jzSb9d0L43HxTQfT+oSA1EEp2q+ne2uh6XgeJcm8brE=
 github.com/MyFitnessPro/firebase v1.0.2 h1:Jk2+ZiKbAN1n3pqaCj3ks65Kvu2tgdsxInfVmjKEVFQ=
 github.com/MyFitnessPro/firebase v1.0.2/go.mod h1:HKz8B72R/pUGwU3uNP8qf4+nmjRZokjwDYMyte5PfG0=
+github.com/MyFitnessPro/middleware v1.0.1 h1:K3LrOEL1pkQ1FQBMZ6OIWoIYUdo9gOszo+ABYEhaMJs=
+github.com/MyFitnessPro/middleware v1.0.1/go.mod h1:rjzOFxYPlIpkaV5ohitGD0ed23JSmixdO32hyemWVFY=
 github.com/MyFitnessPro/utils v0.0.0-20231125143336-ead0c8aea7df h1:ctGPq5wp7Fws2UzPnhUWcmYy0KQqMYPnk1L7r7MUy2k=
 github.com/MyFitnessPro/utils v0.0.0-20231125143336-ead0c8aea7df/go.mod h1:NIiPNxYxg6L6fOxYb302/EanFz7s8v0gLXYIbkcKcIQ=
 github.com/PuerkitoBio/purell v1.2.1 h1:QsZ4TjvwiMpat6gBCBxEQI0rcS9ehtkKtSpiUnd9N28=

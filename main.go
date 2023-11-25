@@ -1,4 +1,4 @@
-package user
+package main
 
 import (
 	"context"
@@ -6,6 +6,7 @@ import (
 	"os"
 
 	goFirebase "github.com/MyFitnessPro/firebase"
+	middleware "github.com/MyFitnessPro/middleware"
 	_ "github.com/MyFitnessPro/user/docs"
 
 	"github.com/gin-gonic/gin"
@@ -21,20 +22,25 @@ import (
 func main() {
 	ctx := context.Background()
 
+	// Get secrets file path from environment variable
+	secretsFilePath := os.Getenv("SECRETS_FILE_PATH")
+	projectID := os.Getenv("PROJECT_ID")
+
 	// Read secrets file
-	secretsFile, err := os.ReadFile("secrets.json")
+	secretsFile, err := os.ReadFile(secretsFilePath)
 	if err != nil {
 		log.Fatalf("Failed to read secrets file: %v", err)
 	}
 
 	// Initialize Firebase client
-	firebaseClient, err := goFirebase.NewFirebaseClient(ctx, "myfitnessprocoll", secretsFile)
+	firebaseClient, err := goFirebase.NewFirebaseClient(ctx, projectID, secretsFile)
 	if err != nil {
 		log.Fatalf("Failed to initialize Firebase client: %v", err)
 	}
 
 	// Initialize Gin router
 	r := gin.Default()
+	r.Use(middleware.ProcessRequestMiddleware(firebaseClient))
 
 	// CORS middleware
 	r.Use(func(c *gin.Context) {

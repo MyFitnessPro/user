@@ -13,6 +13,7 @@ require (
 	firebase.google.com/go v3.13.0+incompatible // indirect
 	github.com/KyleBanks/depth v1.2.1 // indirect
 	github.com/MyFitnessPro/firebase v1.0.2 // indirect
+	github.com/MyFitnessPro/middleware v1.0.1 // indirect
 	github.com/MyFitnessPro/utils v0.0.0-20231125143336-ead0c8aea7df // indirect
 	github.com/PuerkitoBio/purell v1.2.1 // indirect
 	github.com/PuerkitoBio/urlesc v0.0.0-20170810143723-de5bf2ad4578 // indirect
