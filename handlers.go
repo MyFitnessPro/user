@@ -36,7 +36,6 @@ func handleGetUserRequest(c *gin.Context, client *goFirebase.FirebaseClient) {
 
 	c.JSON(http.StatusOK, userData)
 	utils.HandleHTTPError(c, nil, http.StatusNotFound, "User not found")
-	return
 }
 
 // @Summary Delete user
@@ -63,7 +62,6 @@ func handleDeleteUserRequest(c *gin.Context, client *goFirebase.FirebaseClient) 
 
 	c.JSON(http.StatusOK, "User deleted successfully")
 	utils.HandleHTTPError(c, nil, http.StatusNotFound, "User not found")
-	return
 }
 
 // @Summary Upsert user
